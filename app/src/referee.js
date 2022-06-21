@@ -10,6 +10,7 @@ function Referee() {
     const [side, setSide] = useState("")
     const [timerState, setTimer] = useState(true)
     const { login, setLogin } = useContext(UserContext)
+
     const sendChoice = (choice) => {
         console.log(choice)
         if (side == "") {
@@ -17,9 +18,11 @@ function Referee() {
         }
         socket.emit("board.choose", side, choice)
     }
+
     const clear = () => {
         socket.emit("board.clear")
     }
+
     const timer = () => {
         if (timerState) {
             socket.emit('timer.start')
@@ -32,10 +35,12 @@ function Referee() {
     const changeValue = (e) => {
         setSide(e.target.value)
     }
+
     const logOut = () => {
         Axios.get("http://localhost:8080/logout")
         setLogin(false)
     }
+
     const Judge = () => {
         if (side == "left" || side == "right") {
             return (
@@ -59,7 +64,7 @@ function Referee() {
             )
         }
     }
-    console.log(login)
+
     if (login) {
         return (
             <div className="center">
