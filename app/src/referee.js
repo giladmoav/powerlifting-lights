@@ -15,7 +15,7 @@ function Referee(){
         if (side == ""){
             alert("you should choose side")
         }
-        socket.emit(side, choice)
+        socket.emit("board.choose",side, choice)
     }
     const clear = () => {
         socket.emit("board.clear")
@@ -44,7 +44,6 @@ function Referee(){
                 <button onClick={() => sendChoice(1)}> RED </button>
                 <button onClick={() => sendChoice(2)}> BLUE </button>
                 <button onClick={() => sendChoice(3)}> YELLOW </button>
-                {/* <button onClick={timer}> TIMER </button> */}
             </div>
         )} else if (side == "head") {
         return (

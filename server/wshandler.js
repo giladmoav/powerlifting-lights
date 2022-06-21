@@ -19,16 +19,11 @@ io.on("connection", (socket) => {
     socket.on("timer.reset", (arg) => {
         io.emit("timer.reset")
     })
-    socket.on("right", (arg) => {
-        io.emit("right", arg)
-    })
-    socket.on("head", (arg) => {
-        io.emit("head", arg)
-    })
-    socket.on("left", (arg) => {
-        io.emit("left", arg)
+    socket.on("board.choose", (side, choice) => {
+        io.emit("board.choose", side, choice)
     })
     socket.on("board.clear", (arg) => {
+        console.log(123)
         io.emit("board.clear", arg)
     })
 })

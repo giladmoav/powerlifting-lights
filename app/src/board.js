@@ -88,14 +88,15 @@ function Board() {
         // 4: <White />,
 
     }
-    socket.on("right", (arg) => {
-        setState({...state, right: arg})
-    })
-    socket.on("left", (arg) => {
-        setState({...state, left: arg})
-    })
-    socket.on("head", (arg) => {
-        setState({...state, head: arg})
+    socket.on("board.choose", (side, choice) => {
+        // console.log("head" + colors[arg])
+        if (side === "left"){
+          setState({...state, left: choice})
+        } else if (side === "right") {
+          setState({...state, right: choice})
+        } else if (side === "head") {
+          setState({...state, head: choice})
+        }
     })
     socket.on("board.clear", (arg) => {
         setState({ right: 4, head: 4, left: 4})
