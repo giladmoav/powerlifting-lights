@@ -10,6 +10,7 @@ const io = new Server(8081, {
     }
 })
 
+let board = {left: 4, head: 4, right: 4}
 console.log("started server")
 io.on("connection", (socket) => {
     console.log("connected ws")
@@ -20,10 +21,18 @@ io.on("connection", (socket) => {
         io.emit("timer.reset")
     })
     socket.on("board.choose", (side, choice) => {
-        io.emit("board.choose", side, choice)
+        console.log("choose" + side + choice)
+        if (side === "left"){
+            board = {...board, left: choice}
+        } else if (side === "right") {
+            board = {...board, right: choice}
+        } else if (side === "head") {
+            board = {...board, head: choice}
+        }
+        io.emit("board", board)
     })
     socket.on("board.clear", (arg) => {
-        console.log(123)
-        io.emit("board.clear", arg)
+        board = {left: 4, head: 4, right: 4}
+        io.emit("board", board)
     })
 })
