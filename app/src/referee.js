@@ -4,7 +4,7 @@ import React, {useState, useEffect, useContext} from "react"
 import { UserContext } from './context'
 import Axios from "axios"
 import { Navigate } from "react-router-dom"
-const socket = io.connect("ws://192.168.1.134:8081")
+const socket = io.connect("ws://localhost:8081")
 
 function Referee(){
     const [side, setSide] = useState("")

@@ -76,16 +76,16 @@ function Circle(props) {
 function Board() {
     const [state, setState ] = useState({ right: 4, head: 4, left: 4})
     const colors = { 
-        // 0: "white",
-        // 1: "red",
-        // 2: "blue",
-        // 3: "yellow",
-        // 4: "black",
-        0: <White />,
-        1: <RedRed />,
-        2: <RedBlue />,
-        3: <RedYellow />,
-        4: <White />,
+        0: "white",
+        1: "red",
+        2: "blue",
+        3: "yellow",
+        4: "black",
+        // 0: <White />,
+        // 1: <RedRed />,
+        // 2: <RedBlue />,
+        // 3: <RedYellow />,
+        // 4: <White />,
 
     }
     socket.on("right", (arg) => {
@@ -115,12 +115,12 @@ function Board() {
             minHeight: '90vh'
         }}>
             
-            {/* <Circle color={colors[state.right]}/>
+            <Circle color={colors[state.right]}/>
             <Circle color={colors[state.head]}/>
-            <Circle color={colors[state.left]}/> */}
-            {colors[state.right]}
+            <Circle color={colors[state.left]}/>
+            {/* {colors[state.right]}
             {colors[state.head]}
-            {colors[state.left]}
+            {colors[state.left]} */}
         </div>
         {/* <RedRed />
         <RedBlue />
