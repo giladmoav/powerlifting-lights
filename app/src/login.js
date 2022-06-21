@@ -1,11 +1,9 @@
 import React, {useState, useEffect, useContext} from "react"
 import Axios from "axios"
-import { UserContext } from './context'
 import { useNavigate } from "react-router-dom"
 
 function Login() {
     const [password, setPassword] = useState("")
-    const {loginState, setLogin} = useContext(UserContext)
     let navigate = useNavigate()
 
     Axios.defaults.withCredentials = true
@@ -21,7 +19,6 @@ function Login() {
                 alert("oof")
             }
             else {
-            setLogin(true)
             navigate("/referee")
             }
         })

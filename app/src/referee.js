@@ -1,7 +1,6 @@
 
 import io from "socket.io-client"
 import React, { useState, useEffect, useContext } from "react"
-import { UserContext } from './context'
 import Axios from "axios"
 import { Navigate } from "react-router-dom"
 const socket = io.connect("ws://localhost:8081")
@@ -9,7 +8,6 @@ const socket = io.connect("ws://localhost:8081")
 function Referee() {
     const [side, setSide] = useState("")
     const [timerState, setTimer] = useState(true)
-    const { login, setLogin } = useContext(UserContext)
 
     const sendChoice = (choice) => {
         console.log(choice)
@@ -38,7 +36,6 @@ function Referee() {
 
     const logOut = () => {
         Axios.get("http://localhost:8080/logout")
-        setLogin(false)
     }
 
     const Judge = () => {
@@ -65,7 +62,7 @@ function Referee() {
         }
     }
 
-    if (login) {
+    if (true) {
         return (
             <div className="center">
                 <div style={{ color: 'white' }} onChange={changeValue}>
