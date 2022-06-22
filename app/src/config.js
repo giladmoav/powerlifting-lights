@@ -1,0 +1,1 @@
+export const SOCKETIO_URL = "ws://localhost:8081"
