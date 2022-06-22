@@ -11,6 +11,7 @@ const io = new Server(8081, {
 })
 
 console.log("started server")
+const board = {left: 4, head: 4, right: 4}
 io.on("connection", (socket) => {
     console.log("connected ws")
     socket.on("timer.start", (arg) => {
@@ -20,7 +21,15 @@ io.on("connection", (socket) => {
         io.emit("timer.reset")
     })
     socket.on("board.choose", (side, choice) => {
-        io.emit("board.choose", side, choice)
+        console.log(side, choice)
+        if (side === "left") {
+            board["left"] = choice
+        } else if (side === "head") {
+            board["head"] = choice
+        } else if (side === "right") {
+            board["right"] = choice
+        }
+        io.emit("board", board)
     })
     socket.on("board.clear", (arg) => {
         console.log(123)

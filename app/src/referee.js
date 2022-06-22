@@ -3,14 +3,14 @@ import io from "socket.io-client"
 import React, { useState, useEffect, useContext } from "react"
 import Axios from "axios"
 import { Navigate } from "react-router-dom"
-const socket = io.connect("ws://localhost:8081")
+import { SocketIOContext } from "./context"
 
 function Referee() {
     const [side, setSide] = useState("")
     const [timerState, setTimer] = useState(true)
+    const socket = useContext(SocketIOContext)
 
     const sendChoice = (choice) => {
-        console.log(choice)
         if (side == "") {
             alert("you should choose side")
         }
