@@ -31,8 +31,10 @@ io.on("connection", (socket) => {
         }
         io.emit("board", board)
     })
-    socket.on("board.clear", (arg) => {
-        console.log(123)
-        io.emit("board.clear", arg)
+    socket.on("board.clear", () => {
+        board["left"] = 4
+        board["head"] = 4
+        board["right"] = 4
+        io.emit("board", board)
     })
 })

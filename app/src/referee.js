@@ -1,6 +1,5 @@
 
-import io from "socket.io-client"
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useContext } from "react"
 import Axios from "axios"
 import { Navigate } from "react-router-dom"
 import { SocketIOContext } from "./context"
@@ -11,7 +10,7 @@ function Referee() {
     const socket = useContext(SocketIOContext)
 
     const sendChoice = (choice) => {
-        if (side == "") {
+        if (side === "") {
             alert("you should choose side")
         }
         socket.emit("board.choose", side, choice)
@@ -39,7 +38,7 @@ function Referee() {
     }
 
     const Judge = () => {
-        if (side == "left" || side == "right") {
+        if (side === "left" || side === "right") {
             return (
                 <div>
                     <button onClick={() => sendChoice(0)}> WHITE </button>
@@ -48,7 +47,7 @@ function Referee() {
                     <button onClick={() => sendChoice(3)}> YELLOW </button>
                 </div>
             )
-        } else if (side == "head") {
+        } else if (side === "head") {
             return (
                 <div>
                     <button onClick={() => sendChoice(0)}> WHITE </button>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { SocketProvider } from './context';
 import Board from './board';
@@ -6,7 +6,6 @@ import Referee from './referee';
 import Login from './login'
 
 function App(){
-    const [login, setLogin] = useState(false)
     return (
     <SocketProvider>
     <BrowserRouter>

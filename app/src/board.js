@@ -8,32 +8,20 @@ import {ReactComponent as White} from './lights/white.svg'
 
 import { SocketIOContext } from './context'
 
-function Timer(props) {
-  const [seconds, setSeconds] = useState(props.time);
+function Timer({ time }) {
+  const [seconds, setSeconds] = useState(time);
   const [isActive, setIsActive] = useState(false);
   const socket = useContext(SocketIOContext)
 
-  function toggle() {
-    setIsActive(!isActive);
-  }
-
-  function reset() {
-    setIsActive(false);
-    setSeconds(props.time);
-  }
-
-  function start() {
-    setIsActive(true);
-  }
-
   useEffect(() => {
     socket.on("timer.start", () => {
-        start()
+        setIsActive(true);
     })
     socket.on("timer.reset", () => {
-        reset()
+        setIsActive(false);
+        setSeconds(time);
     })
-  },[])
+  },[socket, time])
   useEffect(() => {
     let interval = null;
     if (isActive) {
@@ -60,11 +48,11 @@ function Timer(props) {
   );
 };
 
-function Circle(props) {
+function Circle({ color }) {
     return <div style={{
         margin:'2%',
         display:"inline-block",
-        backgroundColor: props.color,
+        backgroundColor: color,
         borderRadius: "50%",
         aspectRatio: 1,
         width: '20%'
@@ -80,7 +68,7 @@ function Board() {
       socket.on("board", (board) => {
         setState(board)
     })
-    },[])
+    },[socket])
 
 
     const colors = { 
