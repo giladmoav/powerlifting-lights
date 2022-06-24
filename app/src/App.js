@@ -1,12 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { SocketProvider } from './context';
+import { SocketProvider, AuthProbider } from './context';
 import Board from './board';
 import Referee from './referee';
 import Login from './login'
 
 function App(){
     return (
+    <AuthProbider>
     <SocketProvider>
     <BrowserRouter>
     <Routes>
@@ -16,6 +17,7 @@ function App(){
     </Routes>
     </BrowserRouter>
     </SocketProvider>
+    </AuthProbider>
     )}
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,5 +1,6 @@
 // TODO cool crypto shit 
 import { Server } from "socket.io";
+import jwt from "jsonwebtoken"
 import 'dotenv/config'
 
 
@@ -9,6 +10,19 @@ const io = new Server(8081, {
         methods: ["GET", "POST"]
     }
 })
+
+// const jwtCheckAuth = (socket, next) => { // TODO
+//     const {token} = socket.handshake.query
+//     if (token) {
+//         jwt.verify(req.body.token, process.env.JWT_SECRET, (err, decoded) => {
+//             if (!err) {
+//                 next()
+//             }
+//         })
+//     }
+// }
+
+// io.use(jwtCheckAuth)
 
 console.log("started server")
 const board = {left: 4, head: 4, right: 4}
@@ -37,4 +51,5 @@ io.on("connection", (socket) => {
         board["right"] = 4
         io.emit("board", board)
     })
+    
 })

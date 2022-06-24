@@ -1,13 +1,30 @@
 
-import React, { useState, useContext } from "react"
+import React, { useState, useContext, useEffect } from "react"
 import Axios from "axios"
-import { Navigate } from "react-router-dom"
-import { SocketIOContext } from "./context"
+import { useNavigate } from "react-router-dom"
+import { SocketIOContext, AuthContext } from "./context"
 
 function Referee() {
     const [side, setSide] = useState("")
     const [timerState, setTimer] = useState(true)
     const socket = useContext(SocketIOContext)
+    // const {logged, setLogged} = useContext(AuthContext)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        const token = localStorage.getItem('token')
+        if (!token) {
+            navigate('/login')
+        } else {
+            Axios.post("http://localhost:8080/login", {
+                token: token
+            }).then((res) => {
+                if (!res.data.auth) {
+                    navigate('/login')
+                }
+            })
+        }
+    }, []);
 
     const sendChoice = (choice) => {
         if (side === "") {
@@ -61,21 +78,17 @@ function Referee() {
         }
     }
 
-    if (true) {
-        return (
-            <div className="center">
-                <div style={{ color: 'white' }} onChange={changeValue}>
-                    <input type="radio" value="right" name="side" /> Left
-                    <input type="radio" value="head" name="side" /> Head
-                    <input type="radio" value="left" name="side" /> Right
-                </div>
-                <Judge />
-                <button onClick={() => logOut()} > logout</button>
+    return (
+        <div className="center">
+            <div style={{ color: 'white' }} onChange={changeValue}>
+                <input type="radio" value="right" name="side" /> Left
+                <input type="radio" value="head" name="side" /> Head
+                <input type="radio" value="left" name="side" /> Right
             </div>
+            <Judge />
+            <button onClick={() => logOut()} > logout</button>
+        </div>
         )
-    } else {
-        return (<Navigate to="/login" replace={true} />)
-    }
 }
 
 export default Referee;
