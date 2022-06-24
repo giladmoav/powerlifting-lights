@@ -7,7 +7,6 @@ import Login from './login'
 
 function App(){
     return (
-    // <AuthProbider>
     <SocketProvider>
     <BrowserRouter>
     <Routes>
@@ -17,7 +16,6 @@ function App(){
     </Routes>
     </BrowserRouter>
     </SocketProvider>
-    // </AuthProbider>
     )}
 
 // If you want to start measuring performance in your app, pass a function

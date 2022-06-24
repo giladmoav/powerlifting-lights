@@ -1,7 +1,6 @@
 import React, {useState, useContext, useEffect} from "react"
 import Axios from "axios"
 import { useNavigate } from "react-router-dom"
-import { AuthContext } from "./context"
 
 function Login() {
     const [password, setPassword] = useState("")

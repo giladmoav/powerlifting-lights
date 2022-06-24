@@ -2,7 +2,7 @@
 import React, { useState, useContext, useEffect } from "react"
 import Axios from "axios"
 import { useNavigate } from "react-router-dom"
-import { SocketIOContext, AuthContext } from "./context"
+import { SocketIOContext } from "./context"
 
 function Referee() {
     const [side, setSide] = useState("")
