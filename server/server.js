@@ -22,7 +22,6 @@ app.get('/logout', (req, res) => {
 })
 
 app.post('/login', async (req, res) => {
-    console.log(req.body)
     if (req.body.token) {
       jwt.verify(req.body.token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
